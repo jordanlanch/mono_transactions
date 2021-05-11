@@ -1,0 +1,18 @@
+<%= if live_flash(@flash, :info) || live_flash(@flash, :error) do %>
+  <div class="w-full  my-3">
+    <%= if live_flash(@flash, :info) do %>
+      <div class="alert alert_info mt-5">
+        <strong class="uppercase">Info!</strong>
+        <%= live_flash(@flash, :info) %>
+        <button type="button" class="dismiss la la-times" data-dismiss="alert"></button>
+      </div>
+    <% end %>
+    <%= if live_flash(@flash, :error) do %>
+      <div class="alert alert_danger mt-5">
+        <strong class="uppercase">Danger!</strong>
+        <%= live_flash(@flash, :error) %>
+        <button type="button" class="dismiss la la-times" data-dismiss="alert"></button>
+      </div>
+    <% end %>
+  </div>
+<% end %>

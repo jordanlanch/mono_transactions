@@ -1,6 +1,6 @@
-<h1>Settings</h1>
+<h1 class="text-blue-500 text-5xl font-bold text-center">Settings</h1>
 
-<h3>Change e-mail</h3>
+<h3 class="text-blue-500 text-3xl font-bold">Change e-mail</h3>
 
 <%= form_for @email_changeset, Routes.user_settings_path(@conn, :update_email), fn f -> %>
   <%= if @email_changeset.action do %>
@@ -18,11 +18,11 @@
   <%= error_tag f, :current_password %>
 
   <div>
-    <%= submit "Change e-mail" %>
+    <%= submit "Change e-mail", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-5" %>
   </div>
 <% end %>
 
-<h3>Change password</h3>
+<h3 class="text-blue-500 text-3xl font-bold">Change password</h3>
 
 <%= form_for @password_changeset, Routes.user_settings_path(@conn, :update_password), fn f -> %>
   <%= if @password_changeset.action do %>
@@ -44,6 +44,6 @@
   <%= error_tag f, :current_password %>
 
   <div>
-    <%= submit "Change password" %>
+    <%= submit "Change password", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-5" %>
   </div>
 <% end %>
