@@ -2,21 +2,21 @@
   <div class="w-full">
     <div class="card">
       <%= if get_flash(@conn, :info) do %>
-        <div class="alert alert_info mt-5">
+        <div class="alert alert-info mt-5">
           <strong class="uppercase">Info!</strong>
           <%= get_flash(@conn, :info) %>
           <button type="button" class="dismiss la la-times" data-dismiss="alert"></button>
         </div>
       <% end %>
       <%= if get_flash(@conn, :error) do %>
-        <div class="alert alert_danger mt-5">
+        <div class="alert alert-danger mt-5">
           <strong class="uppercase">Danger!</strong>
           <%= get_flash(@conn, :error) %>
           <button type="button" class="dismiss la la-times" data-dismiss="alert"></button>
         </div>
       <% end %>
       <%= if get_flash(@conn, :warning) do %>
-        <div class="alert alert_warning mt-5">
+        <div class="alert alert-warning mt-5">
           <strong class="uppercase">Warning!</strong>
           <%= get_flash(@conn, :warning) %>
           <button type="button" class="dismiss la la-times" data-dismiss="alert"></button>

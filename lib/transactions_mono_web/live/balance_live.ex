@@ -1,59 +1,23 @@
 defmodule TransactionsMonoWeb.Dashboard.IndexLive do
   use Phoenix.LiveView
   alias TransactionsMonoWeb.BalanceView
-  alias TransactionsMonoWeb.Router.Helpers, as: Routes
-  alias Ad.Accounts
-  alias Ad.Users.{ProfileHelper, User, UserHelper}
-  alias Ad.Publications.PublicationHelper
+  alias TransactionsMono.HelperTransactions
 
-  def mount(_params, %{"assigns" => %{current_user: user}}, socket) do
+  def mount(_params, %{"assigns" => %{current_user: user} = assigns}, socket) do
     if connected?(socket), do: :timer.send_interval(5000, self(), :tick)
 
-    {:ok, assign(socket, user: user, socket: socket)}
+
+    {transactions, balance} = get_data_dashboard(user.id)
+
+    {:ok,
+     assign(socket, user: user, transactions: transactions, balance: balance, socket: socket)}
   end
 
   def handle_info(:tick, socket) do
-    {publications, global_counters, cnt_publications, cnt_profiles} =
-      get_data_dashboard(socket.assigns.user_id)
+    {transactions, balance} = get_data_dashboard(socket.assigns.user.id)
 
     {:noreply,
-     assign(socket,
-       publications: publications,
-       global_counters: global_counters,
-       cnt_publications: cnt_publications,
-       cnt_profiles: cnt_profiles,
-       current_user: socket.assigns.current_user,
-       user_id: socket.assigns.user_id,
-       locale: socket.assigns.locale
-     )}
-  end
-
-  def handle_event("resend_mail", _value, socket) do
-    user = socket.assigns.current_user
-    user_id = socket.assigns.user_id
-
-    Accounts.deliver_user_confirmation_instructions(
-      user,
-      &Routes.user_confirmation_url(socket, :confirm, &1)
-    )
-
-    {publications, global_counters, cnt_publications, cnt_profiles} = get_data_dashboard(user_id)
-
-    {:noreply,
-     socket
-     |> put_flash(
-       :info,
-       "Your Email has been sended successfully"
-     )
-     |> assign(
-       publications: publications,
-       global_counters: global_counters,
-       cnt_publications: cnt_publications,
-       cnt_profiles: cnt_profiles,
-       current_user: socket.assigns.current_user,
-       user_id: user_id,
-       locale: socket.assigns.locale
-     )}
+     assign(socket, user: socket.assigns.user, transactions: transactions, balance: balance, socket: socket)}
   end
 
   def render(assigns) do
@@ -61,11 +25,9 @@ defmodule TransactionsMonoWeb.Dashboard.IndexLive do
   end
 
   defp get_data_dashboard(user_id) do
-    publications = PublicationHelper.list_publications_by_user(user_id)
-    global_counters = PublicationHelper.counts_publications_by_user(user_id)
-    cnt_publications = PublicationHelper.counts_publications(user_id)
-    cnt_profiles = ProfileHelper.list_profiles_count(%{user_id: user_id})
+    transactions = HelperTransactions.get_owner_transactions(user_id)
+    balance = HelperTransactions.sum_balance_owner_transactions(user_id)
 
-    {publications, global_counters, cnt_publications, cnt_profiles}
+    {transactions, balance}
   end
 end

@@ -1,0 +1,31 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= label f, :user_from_id, class: "block text-2xl font-bold text-gray-700" %>
+  <%= number_input f, :user_from_id, class: "form-control border-blue-500 border rounded-md" %>
+  <%= error_tag f, :user_from_id %>
+
+  <%= label f, :user_to_id, class: "block text-2xl font-bold text-gray-700" %>
+  <%= number_input f, :user_to_id, class: "form-control border-blue-500 border rounded-md" %>
+  <%= error_tag f, :user_to_id %>
+
+  <%= label f, :amount, class: "block text-2xl font-bold text-gray-700" %>
+  <%= number_input f, :amount, step: "any", class: "form-control border-blue-500 border rounded-md" %>
+  <%= error_tag f, :amount %>
+
+  <%= label f, :date_transaction, class: "block text-2xl font-bold text-gray-700" %>
+  <%= datetime_select f, :date_transaction, class: "form-control border-blue-500 border rounded-md" %>
+  <%= error_tag f, :date_transaction %>
+
+  <%= label f, :description, class: "block text-2xl font-bold text-gray-700" %>
+  <%= text_input f, :description, class: "form-control border-blue-500 border rounded-md" %>
+  <%= error_tag f, :description %>
+
+  <div>
+    <%= submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"  %>
+  </div>
+<% end %>

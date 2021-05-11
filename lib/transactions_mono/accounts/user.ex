@@ -1,6 +1,7 @@
 defmodule TransactionsMono.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias TransactionsMono.HelperTransactions.Transactions
 
   @derive {Inspect, except: [:password]}
   schema "users" do
@@ -8,6 +9,9 @@ defmodule TransactionsMono.Accounts.User do
     field :password, :string, virtual: true
     field :hashed_password, :string
     field :confirmed_at, :naive_datetime
+
+    has_many(:transactions_from, Transactions)
+    has_many(:transactions_to, Transactions)
 
     timestamps()
   end

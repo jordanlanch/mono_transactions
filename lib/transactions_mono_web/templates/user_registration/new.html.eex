@@ -1,29 +1,26 @@
 <h1 class="text-blue-500 text-5xl font-bold text-center">Register</h1>
-
-<%= form_for @changeset, Routes.user_registration_path(@conn, :create), fn f -> %>
+<div class="flex justify-center my-4">
+  <%= form_for @changeset, Routes.user_registration_path(@conn, :create), fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-
-  <%= label f, :email, class: "block text-3xl font-bold text-gray-700" %>
-  <%= email_input f, :email, required: true %>
+  <%= label f, :email, class: "block text-2xl font-bold text-gray-700" %>
+  <%= email_input f, :email, required: true, class: "border-blue-500 border rounded-md" %>
   <div class="block text-2xl text-red-700">
-  <%= error_tag f, :email %>
+    <%= error_tag f, :email %>
   </div>
-
-  <%= label f, :password, class: "block text-3xl font-bold text-gray-700 mt-5" %>
-  <%= password_input f, :password, required: true %>
-   <div class="block text-2xl text-red-700">
-  <%= error_tag f, :password %>
+  <%= label f, :password, class: "block text-2xl font-bold text-gray-700 mt-5" %>
+  <%= password_input f, :password, required: true, class: "border-blue-500 border rounded-md" %>
+  <div class="block text-2xl text-red-700">
+    <%= error_tag f, :password %>
   </div>
-
   <div class="mt-5 text-right">
     <%= submit "Register", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" %>
   </div>
 <% end %>
-
+</div>
 <p class="text-center">
   <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "text-blue-500" %> |
   <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "text-blue-500" %>

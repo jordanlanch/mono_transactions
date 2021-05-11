@@ -2,7 +2,7 @@
 
 <%= form_for :user, Routes.user_confirmation_path(@conn, :create), fn f -> %>
   <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
+  <%= email_input f, :email, required: true, class: "form-control border-blue-500 border rounded-md" %>
 
   <div>
     <%= submit "Resend confirmation instructions" %>

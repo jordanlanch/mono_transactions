@@ -101,4 +101,23 @@ defmodule TransactionsMono.HelperTransactions do
   def change_transactions(%Transactions{} = transactions, attrs \\ %{}) do
     Transactions.changeset(transactions, attrs)
   end
+
+  def get_owner_transactions(user_id) do
+    from(t in Transactions,
+      join: u_to in assoc(t, :user_to),
+      join: u_from in assoc(t, :user_from),
+      where: u_to.id == ^user_id,
+      preload: [user_to: u_to, user_from: u_from]
+    )
+    |> Repo.all()
+  end
+
+  def sum_balance_owner_transactions(user_id) do
+    from(t in Transactions,
+      join: u in assoc(t, :user_to),
+      where: u.id == ^user_id,
+      select: sum(t.amount)
+    )
+    |> Repo.one()
+  end
 end

@@ -1,23 +1,24 @@
 <h1 class="text-blue-500 text-5xl font-bold text-center">Log in</h1>
-<%= form_for @conn, Routes.user_session_path(@conn, :create), [as: :user], fn f -> %>
-<%= if @error_message do %>
-  <div class="alert alert-danger">
-    <p><%= @error_message %></p>
+<div class="flex justify-center my-4">
+  <%= form_for @conn, Routes.user_session_path(@conn, :create), [as: :user], fn f -> %>
+  <%= if @error_message do %>
+    <div class="alert alert-danger">
+      <p><%= @error_message %></p>
+    </div>
+  <% end %>
+  <%= label f, :email, class: "block text-2xl font-bold text-gray-700" %>
+  <%= email_input f, :email, required: true, class: "form-control border-blue-500 border rounded-md", placeholder: gettext "example@example.com", type: "email" %>
+  <%= label f, :password, class: "block text-2xl font-bold text-gray-700 mt-5" %>
+  <%= password_input f, :password, required: true, class: "form-control border-blue-500 border rounded-md" %>
+  <div class="flex inline-block items-center mt-4">
+    <%= label f, :remember_me, "Keep me logged in for 60 days", class: "mr-3" %>
+    <%= checkbox f, :remember_me %>
+  </div>
+  <div class="mt-5 text-right">
+    <%= submit "Log in", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" %>
   </div>
 <% end %>
-<%= label f, :email, class: "block text-3xl font-bold text-gray-700" %>
-<%= email_input f, :email, required: true %>
-<%= label f, :password, class: "block text-3xl font-bold text-gray-700 mt-5" %>
-<%= password_input f, :password, required: true %>
-<div class="flex inline-block items-center mt-4">
-  <%= label f, :remember_me, "Keep me logged in for 60 days", class: "mr-3" %>
-  <%= checkbox f, :remember_me %>
 </div>
-<div class="mt-5 text-right">
-  <%= submit "Log in", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" %>
-</div>
-<% end %>
-
 <p class="text-center">
   <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "text-blue-500" %> |
   <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "text-blue-500" %>

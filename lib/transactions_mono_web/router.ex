@@ -33,7 +33,8 @@ defmodule TransactionsMonoWeb.Router do
   scope "/dashboard", TransactionsMonoWeb do
     pipe_through [:browser, :user]
 
-    get "/balance", BalanceController, :index
+    get "/", BalanceController, :index
+    resources "/transactions", TransactionsController
   end
 
 

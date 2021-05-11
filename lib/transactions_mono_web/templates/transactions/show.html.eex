@@ -1,0 +1,33 @@
+<h1>Show Transactions</h1>
+
+<ul>
+
+  <li>
+    <strong>User from:</strong>
+    <%= @transactions.user_from_id %>
+  </li>
+
+  <li>
+    <strong>User to:</strong>
+    <%= @transactions.user_to_id %>
+  </li>
+
+  <li>
+    <strong>Amount:</strong>
+    <%= @transactions.amount %>
+  </li>
+
+  <li>
+    <strong>Date transaction:</strong>
+    <%= @transactions.date_transaction %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @transactions.description %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.transactions_path(@conn, :edit, @transactions) %></span>
+<span><%= link "Back", to: Routes.transactions_path(@conn, :index) %></span>

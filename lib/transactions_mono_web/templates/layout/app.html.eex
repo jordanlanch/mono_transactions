@@ -10,8 +10,8 @@
   </head>
   <body>
     <header>
-      <section class="flex my-5 h-16 mx-4 justify-between justify-items-center">
-        <a href="https://www.cuentamono.com/" class="w-80  h-16">
+      <section class="flex my-5 h-16 mx-8 justify-between justify-items-center">
+        <a href="<%= Routes.balance_path(@conn, :index) %>" class="w-80  h-16">
           <img src="<%= Routes.static_path(@conn, "/images/mono.png") %>" alt="Mono Logo"/>
         </a>
         <nav class="self-center">
@@ -19,7 +19,8 @@
         </nav>
       </section>
     </header>
-    <main role="main" class=" mx-4 ">
+    <main role="main" class=" mx-8 ">
+      <%= render TransactionsMonoWeb.LayoutView, "_flash.html", conn: @conn %>
       <%= @inner_content %>
     </main>
   </body>

@@ -1,7 +1,7 @@
 <%= render TransactionsMonoWeb.LayoutView, "_flash_live.html", flash: @flash %>
-<div class="flex font-bold text-3xl text-purple-600 justify-end">
+<div class="flex font-bold text-2xl text-purple-600 justify-end">
   <div class="capitalize">savings account:</div>
-  <div class="ml-4">1,000,000 COP</div>
+  <div class="ml-4"><%= @balance %> COP</div>
 </div>
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="flex flex-col mt-6">
@@ -23,45 +23,37 @@
               <th scope="col" class="px-6 py-3 text-left text-lg font-medium text-gray-500 uppercase tracking-wider">
                 Date
               </th>
-              <th scope="col" class="relative px-6 py-3">
-                <span class="sr-only">View</span>
-              </th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0 h-10 w-10">
-                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
-                  </div>
-                  <div class="ml-4">
-                    <div class="text-sm font-medium text-gray-900 capitalize">
-                      Jane Cooper
+            <%= for transaction <- @transactions do %>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10">
+                      <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
                     </div>
-                    <div class="text-sm text-gray-500">
-                      jane.cooper@example.com
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-900">
+                        <%= transaction.user_from.email %>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900 capitalize">interbank payment</div>
-                <div class="text-sm text-gray-500 capitalize">Transfer</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-lg leading-5 font-semibold rounded-full text-green-500">
-                  1,000,000
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                11-05-2021
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900 capitalize">view</a>
-              </td>
-            </tr>
-
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900 capitalize"><%= transaction.description %></div>
+                  <div class="text-sm text-gray-500 capitalize">Transfer</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-lg leading-5 font-semibold rounded-full text-green-500">
+                    <%= transaction.amount %>
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                   <%= transaction.date_transaction %>
+                </td>
+              </tr>
+            <% end %>
             <!-- More people... -->
           </tbody>
         </table>
