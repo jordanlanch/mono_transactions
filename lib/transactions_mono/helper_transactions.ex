@@ -7,6 +7,7 @@ defmodule TransactionsMono.HelperTransactions do
   alias TransactionsMono.Repo
 
   alias TransactionsMono.HelperTransactions.Transactions
+  alias TransactionsMono.Utils.Formatter
 
   @doc """
   Returns the list of transactions.
@@ -119,5 +120,7 @@ defmodule TransactionsMono.HelperTransactions do
       select: sum(t.amount)
     )
     |> Repo.one()
+    |> trunc()
+    |> Formatter.format_number(",")
   end
 end
