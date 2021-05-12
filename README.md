@@ -9,12 +9,48 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## If you have postman please download the file mono.postman_collection.json
 
-## Learn more
+## Enpoints
+___
+AUTH
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+POST http://localhost:4000/api/sign_in
+
+```
+{
+    "email": "example@example.com",
+    "password": "password"
+}
+```
+___
+MAKE TRANSACTIONS
+
+HEADERS
+
+authorization | bearer TOKEN
+
+POST http://localhost:4000/api/transactions
+
+```
+{
+    "transaction": {
+        "amount": 15000,
+        "description": "pago",
+        "user_from_id": 2,
+        "user_to_id": 1
+    }
+}
+```
+
+___
+
+GET TRANSACTIONS BY USER_ID
+
+HEADERS
+
+authorization | bearer TOKEN
+
+POST http://localhost:4000/api/user/:ID/transactions
+
+___

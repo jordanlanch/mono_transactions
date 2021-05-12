@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "2b776901-2b17-4941-be10-0129c4d65f7d",
+		"name": "mono",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"example@example.com\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/sign_in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get transactions by user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ0cmFuc2FjdGlvbnNfbW9ubyIsImV4cCI6MTYyMTA2MTE1OCwiaWF0IjoxNjIwODAxOTU4LCJpc3MiOiJ0cmFuc2FjdGlvbnNfbW9ubyIsImp0aSI6Ijg3MzFiNzRiLTdlMDItNDdiZC1iZThhLWRhNmY0NWRiZGM0NiIsIm5iZiI6MTYyMDgwMTk1Nywic3ViIjoiMiIsInR5cCI6ImFjY2VzcyJ9.R2T2HdVVAAsafRmr0Vj6HxnUJfEDi_A9Q0qZEEtCFlAOEBYbibn4scpLdsikbG8DoW1UfCM9NBx06_Fw1DfjNA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/user/2/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"user",
+						"2",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

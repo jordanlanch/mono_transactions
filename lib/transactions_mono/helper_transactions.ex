@@ -130,7 +130,14 @@ defmodule TransactionsMono.HelperTransactions do
       select: sum(t.amount)
     )
     |> Repo.one()
-    |> trunc()
-    |> Formatter.format_number(",")
+    |> case do
+      nil ->
+        0
+
+      value ->
+        value
+        |> trunc()
+        |> Formatter.format_number(",")
+    end
   end
 end
