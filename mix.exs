@@ -49,7 +49,8 @@ defmodule TransactionsMono.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:phx_gen_auth, "~> 0.4.0", only: [:dev], runtime: false},
       {:floki, ">= 0.30.0", only: :test},
-      {:ex_machina, "~> 2.7.0", only: :test}
+      {:ex_machina, "~> 2.7.0", only: :test},
+      {:guardian, "~> 2.0"}
     ]
   end
 

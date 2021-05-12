@@ -20,8 +20,26 @@ defmodule TransactionsMonoWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :api_authenticated do
+    plug TransactionsMonoWeb.AuthAccessPipeline
+  end
+
   pipeline :user do
     plug(:require_authenticated_user)
+  end
+
+  scope "/api", TransactionsMonoWeb.Api, as: :api do
+    pipe_through :api
+
+    post "/sign_in", SessionController, :create
+  end
+
+  scope "/api", TransactionsMonoWeb.Api, as: :api do
+    pipe_through :api_authenticated
+
+    get "/transactions/:id", TransactionsController, :index
+    get "/transactions/:id/show", TransactionsController, :show
+    post "/transactions/", TransactionsController, :create
   end
 
   scope "/", TransactionsMonoWeb do

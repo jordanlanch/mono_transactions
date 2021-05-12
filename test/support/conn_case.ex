@@ -67,4 +67,12 @@ defmodule TransactionsMonoWeb.ConnCase do
     |> Phoenix.ConnTest.init_test_session(%{})
     |> Plug.Conn.put_session(:user_token, token)
   end
+
+  def create_user_and_assign_valid_jwt(%{conn: conn}) do
+    user = TransactionsMono.AccountsFixtures.user_fixture()
+    {:ok, jwt, _full_claims} = TransactionsMono.Guardian.encode_and_sign(user, %{})
+
+    conn = Plug.Conn.put_req_header(conn, "authorization", "bearer: " <> jwt)
+    {:ok, conn: conn, user: user}
+   end
 end

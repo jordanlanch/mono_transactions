@@ -28,6 +28,16 @@ config :phoenix,
   json_library: Jason,
   template_engines: [leex: Phoenix.LiveView.Engine]
 
+#Config Guardian
+config :transactions_mono, TransactionsMono.Guardian,
+  issuer: "transactions_mono",
+  secret_key: "BY8grm00++tVtByLhHG15he/3GlUG0rOSLmP2/2cbIRwdR4xJk1RHvqGHPFuNcF8",
+  ttl: {3, :days}
+
+config :transactions_mono, TransactionsMonoWeb.AuthAccessPipeline,
+  module: TransactionsMono.Guardian,
+  error_handler: TransactionsMonoWeb.AuthErrorHandler
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

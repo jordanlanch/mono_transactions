@@ -18,7 +18,7 @@ defmodule TransactionsMono.HelperTransactions do
       [%Transactions{}, ...]
 
   """
-  def list_transactions do
+  def list_transactions() do
     Repo.all(from t in Transactions, preload: [:user_to, :user_from])
   end
 
@@ -111,6 +111,16 @@ defmodule TransactionsMono.HelperTransactions do
       preload: [user_to: u_to, user_from: u_from]
     )
     |> Repo.all()
+  end
+
+  def get_transaction_by_id(id) do
+    from(t in Transactions,
+      join: u_to in assoc(t, :user_to),
+      join: u_from in assoc(t, :user_from),
+      where: t.id == ^id,
+      preload: [user_to: u_to, user_from: u_from]
+    )
+    |> Repo.one()
   end
 
   def sum_balance_owner_transactions(user_id) do
