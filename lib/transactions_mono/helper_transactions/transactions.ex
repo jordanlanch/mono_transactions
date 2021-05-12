@@ -3,7 +3,6 @@ defmodule TransactionsMono.HelperTransactions.Transactions do
   import Ecto.Changeset
   alias TransactionsMono.Accounts.User
 
-
   schema "transactions" do
     field :amount, :float
     field :date_transaction, :naive_datetime

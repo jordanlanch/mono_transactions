@@ -19,7 +19,7 @@ defmodule TransactionsMono.HelperTransactions do
 
   """
   def list_transactions do
-    Repo.all(Transactions)
+    Repo.all(from t in Transactions, preload: [:user_to, :user_from])
   end
 
   @doc """

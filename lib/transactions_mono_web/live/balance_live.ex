@@ -3,9 +3,8 @@ defmodule TransactionsMonoWeb.Dashboard.IndexLive do
   alias TransactionsMonoWeb.BalanceView
   alias TransactionsMono.HelperTransactions
 
-  def mount(_params, %{"assigns" => %{current_user: user} = assigns}, socket) do
+  def mount(_params, %{"assigns" => %{current_user: user}}, socket) do
     if connected?(socket), do: :timer.send_interval(5000, self(), :tick)
-
 
     {transactions, balance} = get_data_dashboard(user.id)
 
@@ -17,7 +16,12 @@ defmodule TransactionsMonoWeb.Dashboard.IndexLive do
     {transactions, balance} = get_data_dashboard(socket.assigns.user.id)
 
     {:noreply,
-     assign(socket, user: socket.assigns.user, transactions: transactions, balance: balance, socket: socket)}
+     assign(socket,
+       user: socket.assigns.user,
+       transactions: transactions,
+       balance: balance,
+       socket: socket
+     )}
   end
 
   def render(assigns) do

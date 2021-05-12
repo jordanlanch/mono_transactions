@@ -48,7 +48,8 @@ defmodule TransactionsMono.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:phx_gen_auth, "~> 0.4.0", only: [:dev], runtime: false},
-      {:floki, ">= 0.30.0", only: :test}
+      {:floki, ">= 0.30.0", only: :test},
+      {:ex_machina, "~> 2.7.0", only: :test}
     ]
   end
 
@@ -63,7 +64,7 @@ defmodule TransactionsMono.MixProject do
       setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: ["ecto.drop", "ecto.create", "ecto.migrate", "test"]
     ]
   end
 end

@@ -23,6 +23,7 @@ defmodule TransactionsMonoWeb.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import TransactionsMonoWeb.ConnCase
+      import TransactionsMono.Factory
 
       alias TransactionsMonoWeb.Router.Helpers, as: Routes
 

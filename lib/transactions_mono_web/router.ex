@@ -37,7 +37,6 @@ defmodule TransactionsMonoWeb.Router do
     resources "/transactions", TransactionsController
   end
 
-
   ## Authentication routes
 
   scope "/", TransactionsMonoWeb do

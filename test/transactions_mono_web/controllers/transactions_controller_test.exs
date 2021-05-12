@@ -1,15 +1,30 @@
 defmodule TransactionsMonoWeb.TransactionsControllerTest do
   use TransactionsMonoWeb.ConnCase
 
-  alias TransactionsMono.HelperTransactions
+  setup :register_and_log_in_user
 
-  @create_attrs %{amount: 120.5, date_transaction: ~N[2010-04-17 14:00:00], description: "some description", user_from: 42, user_to: 42}
-  @update_attrs %{amount: 456.7, date_transaction: ~N[2011-05-18 15:01:01], description: "some updated description", user_from: 43, user_to: 43}
-  @invalid_attrs %{amount: nil, date_transaction: nil, description: nil, user_from: nil, user_to: nil}
+  @create_attrs %{
+    amount: 120.5,
+    date_transaction: ~N[2010-04-17 14:00:00],
+    description: "some description",
+    user_from_id: 42,
+    user_to_id: 43
+  }
+  @update_attrs %{
+    amount: 456.7,
+    date_transaction: ~N[2011-05-18 15:01:01],
+    description: "some updated description"
+  }
+  @invalid_attrs %{
+    amount: nil,
+    date_transaction: nil,
+    description: nil,
+    user_from: nil,
+    user_to: nil
+  }
 
   def fixture(:transactions) do
-    {:ok, transactions} = HelperTransactions.create_transactions(@create_attrs)
-    transactions
+    insert(:transaction)
   end
 
   describe "index" do
@@ -27,6 +42,12 @@ defmodule TransactionsMonoWeb.TransactionsControllerTest do
   end
 
   describe "create transactions" do
+    setup do
+      insert(:user_from, id: 42)
+      insert(:user_to, id: 43)
+      :ok
+    end
+
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post(conn, Routes.transactions_path(conn, :create), transactions: @create_attrs)
 
@@ -56,7 +77,11 @@ defmodule TransactionsMonoWeb.TransactionsControllerTest do
     setup [:create_transactions]
 
     test "redirects when data is valid", %{conn: conn, transactions: transactions} do
-      conn = put(conn, Routes.transactions_path(conn, :update, transactions), transactions: @update_attrs)
+      conn =
+        put(conn, Routes.transactions_path(conn, :update, transactions),
+          transactions: @update_attrs
+        )
+
       assert redirected_to(conn) == Routes.transactions_path(conn, :show, transactions)
 
       conn = get(conn, Routes.transactions_path(conn, :show, transactions))
@@ -64,7 +89,11 @@ defmodule TransactionsMonoWeb.TransactionsControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, transactions: transactions} do
-      conn = put(conn, Routes.transactions_path(conn, :update, transactions), transactions: @invalid_attrs)
+      conn =
+        put(conn, Routes.transactions_path(conn, :update, transactions),
+          transactions: @invalid_attrs
+        )
+
       assert html_response(conn, 200) =~ "Edit Transactions"
     end
   end
@@ -75,6 +104,7 @@ defmodule TransactionsMonoWeb.TransactionsControllerTest do
     test "deletes chosen transactions", %{conn: conn, transactions: transactions} do
       conn = delete(conn, Routes.transactions_path(conn, :delete, transactions))
       assert redirected_to(conn) == Routes.transactions_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.transactions_path(conn, :show, transactions))
       end

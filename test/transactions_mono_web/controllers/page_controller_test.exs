@@ -3,6 +3,6 @@ defmodule TransactionsMonoWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")
-    assert html_response(conn, 200) =~ "Welcome to Phoenix!"
+    assert html_response(conn, 200) =~ "A virtual card to make your company fly with"
   end
 end

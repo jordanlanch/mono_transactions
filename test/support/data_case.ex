@@ -24,6 +24,7 @@ defmodule TransactionsMono.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import TransactionsMono.DataCase
+      import TransactionsMono.Factory
     end
   end
 

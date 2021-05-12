@@ -10,8 +10,8 @@ defmodule TransactionsMono.Accounts.User do
     field :hashed_password, :string
     field :confirmed_at, :naive_datetime
 
-    has_many(:transactions_from, Transactions)
-    has_many(:transactions_to, Transactions)
+    has_many(:transactions_from, {"user_from", Transactions})
+    has_many(:transactions_to, {"user_to", Transactions})
 
     timestamps()
   end

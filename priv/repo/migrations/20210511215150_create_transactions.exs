@@ -11,6 +11,5 @@ defmodule TransactionsMono.Repo.Migrations.CreateTransactions do
 
       timestamps()
     end
-
   end
 end
