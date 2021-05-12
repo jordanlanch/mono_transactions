@@ -10,6 +10,7 @@ defmodule TransactionsMono.Utils.Formatter do
     |> Enum.map(&(Enum.reverse(&1) |> Enum.join()))
     |> Enum.reverse()
     |> Enum.join(join)
+    |> String.slice(1..-1)
   end
 
   def format_number(number) when is_float(number),
