@@ -37,8 +37,7 @@ POST http://localhost:4000/api/transactions
     "transaction": {
         "amount": 15000,
         "description": "pago",
-        "user_from_id": 2,
-        "user_to_id": 1
+        "email": "example@example.com"
     }
 }
 ```

@@ -46,7 +46,80 @@
 			"response": []
 		},
 		{
+			"name": "make transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ0cmFuc2FjdGlvbnNfbW9ubyIsImV4cCI6MTYyMTA2MTE1OCwiaWF0IjoxNjIwODAxOTU4LCJpc3MiOiJ0cmFuc2FjdGlvbnNfbW9ubyIsImp0aSI6Ijg3MzFiNzRiLTdlMDItNDdiZC1iZThhLWRhNmY0NWRiZGM0NiIsIm5iZiI6MTYyMDgwMTk1Nywic3ViIjoiMiIsInR5cCI6ImFjY2VzcyJ9.R2T2HdVVAAsafRmr0Vj6HxnUJfEDi_A9Q0qZEEtCFlAOEBYbibn4scpLdsikbG8DoW1UfCM9NBx06_Fw1DfjNA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transaction\": {\n        \"amount\": 15000,\n        \"description\": \"pago\",\n        \"email\": \"example@example.com\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/user/2/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"user",
+						"2",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "get transactions by user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ0cmFuc2FjdGlvbnNfbW9ubyIsImV4cCI6MTYyMTE0NTY2MywiaWF0IjoxNjIwODg2NDYzLCJpc3MiOiJ0cmFuc2FjdGlvbnNfbW9ubyIsImp0aSI6IjBjODQ0MjljLThkY2UtNDhhNi1hMTU4LWI1YjA0ZTNmMGI3ZiIsIm5iZiI6MTYyMDg4NjQ2Miwic3ViIjoiMiIsInR5cCI6ImFjY2VzcyJ9.iF_BAf-TbhoH__f0lK60GAi0Cj8-ZB030SDg31ZI_oa_BueKEnKPklyhemaOwRj_VcrdRU5sezFS01yYn7bpDA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/user/2/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"user",
+						"2",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show transaction",
 			"request": {
 				"auth": {
 					"type": "bearer",
