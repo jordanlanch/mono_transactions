@@ -37,9 +37,9 @@ end
   scope "/api", TransactionsMonoWeb.Api, as: :api do
     pipe_through :api_authenticated
 
-    get "/user/:id/transactions", TransactionsController, :index
-    get "/transactions/:id/show", TransactionsController, :show
-    post "/transactions/", TransactionsController, :create
+    get "/user/:id_user/transactions", TransactionsController, :index
+    get "/user/:id_user/transactions/:id_transaction/show", TransactionsController, :show
+    post "/user/:id_user/transactions/", TransactionsController, :create
   end
 
   scope "/", TransactionsMonoWeb do

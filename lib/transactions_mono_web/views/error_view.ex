@@ -10,6 +10,14 @@ defmodule TransactionsMonoWeb.ErrorView do
   # By default, Phoenix returns the status message from
   # the template name. For example, "404.html" becomes
   # "Not Found".
+
+  def render("error.json", %{msj: msj}) do
+    # When encoded, the changeset returns its errors
+    # as a JSON object. So we just pass it forward.
+   %{errors: msj}
+ end
+
+
   def template_not_found(template, _assigns) do
     Phoenix.Controller.status_message_from_template(template)
   end

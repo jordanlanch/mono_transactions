@@ -73,6 +73,7 @@ defmodule TransactionsMonoWeb.ConnCase do
     {:ok, jwt, _full_claims} = TransactionsMono.Guardian.encode_and_sign(user, %{})
 
     conn = Plug.Conn.put_req_header(conn, "authorization", "bearer: " <> jwt)
-    {:ok, conn: conn, user: user}
+    conn_with_user = Map.put(conn, :private, %{:guardian_default_resource => %TransactionsMono.Accounts.User{id: user.id}})
+    {:ok, conn: conn_with_user, user: user}
    end
 end
