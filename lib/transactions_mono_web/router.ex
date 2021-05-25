@@ -14,7 +14,7 @@ defmodule TransactionsMonoWeb.Router do
     plug(:put_layout, {TransactionsMonoWeb.LayoutView, "app.html"})
     plug :put_root_layout, {TransactionsMonoWeb.LayoutView, :root}
     plug :fetch_current_user
-end
+  end
 
   pipeline :api do
     plug :accepts, ["json"]

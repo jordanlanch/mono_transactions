@@ -103,6 +103,20 @@ defmodule TransactionsMono.HelperTransactions do
     Transactions.changeset(transactions, attrs)
   end
 
+  @doc """
+  Gets transactions by Owner.
+
+  Raises `Ecto.NoResultsError` if the Transactions does not exist.
+
+  ## Examples
+
+      iex> get_owner_transactions(123)
+      %Transactions{}
+
+      iex> get_owner_transactions(456)
+      ** (Ecto.NoResultsError)
+
+  """
   def get_owner_transactions(user_id) do
     from(t in Transactions,
       join: u_to in assoc(t, :user_to),
@@ -113,6 +127,20 @@ defmodule TransactionsMono.HelperTransactions do
     |> Repo.all()
   end
 
+  @doc """
+  Get transaction by ID.
+
+  Raises `Ecto.NoResultsError` if the Transactions does not exist.
+
+  ## Examples
+
+      iex> get_transaction_by_id(123)
+      %Transactions{}
+
+      iex> get_transaction_by_id(456)
+      ** (Ecto.NoResultsError)
+
+  """
   def get_transaction_by_id(id) do
     from(t in Transactions,
       join: u_to in assoc(t, :user_to),
@@ -123,6 +151,20 @@ defmodule TransactionsMono.HelperTransactions do
     |> Repo.one()
   end
 
+  @doc """
+  Get transaction by ID.
+
+  Raises `Ecto.NoResultsError` if the Transactions does not exist.
+
+  ## Examples
+
+      iex> get_transaction_by_id(123)
+      %Transactions{}
+
+      iex> get_transaction_by_id(456)
+      ** (Ecto.NoResultsError)
+
+  """
   def sum_balance_owner_transactions(user_id) do
     from(t in Transactions,
       join: u in assoc(t, :user_to),
@@ -137,7 +179,7 @@ defmodule TransactionsMono.HelperTransactions do
       value ->
         value
         |> trunc()
-        |> Formatter.format_number(",")
+        |> Formatter.number_to_currency()
     end
   end
 end

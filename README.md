@@ -9,6 +9,18 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
+## versions
+
+```
+elixir ~> 1.7
+erlang ~> 22.3
+node ~> 14.15.2 
+yarn ~> 1.22.5
+
+```
+
+
+
 ## If you have postman please download the file mono.postman_collection.json
 
 ## Enpoints

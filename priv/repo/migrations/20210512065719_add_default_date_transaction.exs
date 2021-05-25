@@ -3,7 +3,7 @@ defmodule TransactionsMono.Repo.Migrations.AddDefaultDateTransaction do
 
   def change do
     alter table(:transactions) do
-      modify :date_transaction, :naive_datetime, default: fragment("now()")
+      modify :date_transaction, :utc_datetime, default: fragment("now()")
     end
   end
 end

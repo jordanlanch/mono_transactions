@@ -5,8 +5,8 @@ defmodule TransactionsMono.Repo.Migrations.CreateTransactions do
     create table(:transactions) do
       add :user_from_id, references(:users)
       add :user_to_id, references(:users)
-      add :amount, :float
-      add :date_transaction, :naive_datetime
+      add :amount, :decimal
+      add :date_transaction, :utc_datetime
       add :description, :string
 
       timestamps()

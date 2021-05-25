@@ -11,7 +11,8 @@ defmodule TransactionsMonoWeb.Api.TransactionsView do
   end
 
   def render("transaction.json", %{transactions: transactions}) do
-    %{id: transactions.id,
+    %{
+      id: transactions.id,
       amount: transactions.amount,
       date_transaction: transactions.date_transaction,
       description: transactions.description,

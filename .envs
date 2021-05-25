@@ -1,0 +1,2 @@
+export SECRET_KEY_BASE=U2PhIG8gvQZMkDKxyeXdxt/vdN0huI8LpW+XaZCgd+VqZo+RVirFiaOaty6w0rYj
+export DATABASE_URL="ecto://admin_ad:59are24that3756blackagainst67said@db:5432/transactions_mono"

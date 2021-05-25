@@ -9,7 +9,8 @@ defmodule TransactionsMonoWeb.Api.SessionView do
         email: user.email,
         id: user.id
       },
-      message: "You are successfully logged in! Add this token to authorization header to make authorized requests."
+      message:
+        "You are successfully logged in! Add this token to authorization header to make authorized requests."
     }
   end
 

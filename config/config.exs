@@ -28,7 +28,7 @@ config :phoenix,
   json_library: Jason,
   template_engines: [leex: Phoenix.LiveView.Engine]
 
-#Config Guardian
+# Config Guardian
 config :transactions_mono, TransactionsMono.Guardian,
   issuer: "transactions_mono",
   secret_key: "BY8grm00++tVtByLhHG15he/3GlUG0rOSLmP2/2cbIRwdR4xJk1RHvqGHPFuNcF8",
