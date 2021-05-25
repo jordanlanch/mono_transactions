@@ -31,9 +31,9 @@ defmodule TransactionsMonoWeb.Api.SessionControllerTest do
         )
 
       assert %{
-        "data" => %{"token" => "" <> _},
-        "message" => "You are successfully logged in" <> _
-      } = json_response(conn, 200)
+               "data" => %{"token" => "" <> _},
+               "message" => "You are successfully logged in" <> _
+             } = json_response(conn, 200)
     end
   end
 end

@@ -4,8 +4,8 @@ defmodule TransactionsMono.HelperTransactions.Transactions do
   alias TransactionsMono.Accounts.User
 
   schema "transactions" do
-    field :amount, :float
-    field :date_transaction, :naive_datetime
+    field :amount, :decimal
+    field :date_transaction, :utc_datetime
     field :description, :string
 
     belongs_to :user_from, User

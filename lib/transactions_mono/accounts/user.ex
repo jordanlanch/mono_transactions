@@ -8,7 +8,7 @@ defmodule TransactionsMono.Accounts.User do
     field :email, :string
     field :password, :string, virtual: true
     field :hashed_password, :string
-    field :confirmed_at, :naive_datetime
+    field :confirmed_at, :utc_datetime
 
     has_many(:transactions_from, {"user_from", Transactions})
     has_many(:transactions_to, {"user_to", Transactions})

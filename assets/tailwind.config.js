@@ -1,6 +1,7 @@
+console.log('env', process.env.NODE_ENV)
 module.exports = {
   purge: {
-    enabled: false,
+    enabled: process.env.NODE_ENV === 'production',
     layers: ['components', 'utilities'],
     content: [
     "../lib/**/*.eex",
